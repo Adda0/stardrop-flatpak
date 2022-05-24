@@ -1,0 +1,53 @@
+From f7932c971ec95ba13bb484efbe8b20efd715fd50 Mon Sep 17 00:00:00 2001
+From: Dylan Baker <dylan@pnwbakers.com>
+Date: Wed, 25 May 2022 12:48:27 -0700
+Subject: [PATCH] Invoke xdg-open directly, instead of through bash
+
+There isn't any advantage to invoking it through bash, and when used in
+a sandboxed environment like flatpak, it breaks the sandbox's ability to
+re-route xdg-open calls through it's portal's (a security mechanism) and
+breaks the opening of URIs and URLs.
+
+diff --git a/Stardrop/ViewModels/MainWindowViewModel.cs b/Stardrop/ViewModels/MainWindowViewModel.cs
+index b32209b..0818da7 100644
+--- a/Stardrop/ViewModels/MainWindowViewModel.cs
++++ b/Stardrop/ViewModels/MainWindowViewModel.cs
+@@ -110,28 +110,14 @@ namespace Stardrop.ViewModels
+ 
+             try
+             {
+-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
++                using Process process = Process.Start(new ProcessStartInfo
+                 {
+-                    // If no associated application/json MimeType is found xdg-open returns error
+-                    // but it tries to open it anyway using the console editor (nano, vim, other..)
+-                    using Process process = Process.Start(new ProcessStartInfo
+-                    {
+-                        FileName = "/bin/bash",
+-                        Arguments = $"xdg-open \"{url}\"",
+-                        CreateNoWindow = true,
+-                        UseShellExecute = false
+-                    });
+-                }
+-                else
+-                {
+-                    using Process process = Process.Start(new ProcessStartInfo
+-                    {
+-                        FileName = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? url : "open",
+-                        Arguments = RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? $"\"{url}\"" : "",
+-                        CreateNoWindow = true,
+-                        UseShellExecute = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+-                    });
+-                }
++                    FileName = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? url : 
++                        RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? "open" : "xdg-open",
++                    Arguments = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "" : $"\"{url}\"",
++                    CreateNoWindow = true,
++                    UseShellExecute = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
++                });
+             }
+             catch (Exception ex)
+             {
+-- 
+2.33.3
+

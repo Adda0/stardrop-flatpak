@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+
+Name=Stardrop
+Comment=A mod manager for Stardew Valley
+Categories=Utility;
+
+Icon=com.github.Floogen.Stardrop
+Exec=Stardrop
+Terminal=false

@@ -1,0 +1,55 @@
+From d860d2f9e3a1773260452bce045e18794f61db67 Mon Sep 17 00:00:00 2001
+From: Dylan Baker <dylan@pnwbakers.com>
+Date: Wed, 25 May 2022 10:48:51 -0700
+Subject: [PATCH] build: dont' run post publish step
+
+We don't need any of it since we don't want to publish a single file app
+anyway.
+
+diff --git a/Stardrop/Stardrop.csproj b/Stardrop/Stardrop.csproj
+index dbd71c3..13ec063 100644
+--- a/Stardrop/Stardrop.csproj
++++ b/Stardrop/Stardrop.csproj
+@@ -79,39 +79,6 @@
+ 		</Content>
+ 	</ItemGroup>
+ 
+-	<ItemGroup Condition="$(Configuration)=='Release' And $(RuntimeIdentifier)=='linux-x64'">
+-		<WSL Include="wsl" />
+-		<BashScript Include="$(ProjectDir)\Assets\Stardrop.sh" />
+-		<RenameExecutableLinux Include="$(PublishDir)\Stardrop" />
+-		<RenameDatabaseLinux Include="$(PublishDir)\Stardrop.pdb" />
+-		<ZipName Include="Stardrop-linux-x64.zip" />
+-	</ItemGroup>
+-
+-	<Target Name="FolderProfile - Linux" AfterTargets="Publish" Condition="$(Configuration)=='Release' And $(RuntimeIdentifier)=='linux-x64'">
+-		<Exec Command="del @(ZipName) 2&gt;nul" WorkingDirectory="$(PublishDir)" />
+-
+-		<Copy SourceFiles="@(RenameExecutableLinux)" DestinationFiles="@(RenameExecutableLinux-&gt;Replace('Stardrop','Internal'))" />
+-		<Copy SourceFiles="@(RenameDatabaseLinux)" DestinationFiles="@(RenameDatabaseLinux-&gt;Replace('Stardrop','Internal'))" />
+-		<Delete Files="@(RenameExecutableLinux);@(RenameDatabaseLinux)" />
+-
+-		<Copy SourceFiles="@(BashScript)" DestinationFolder="$(PublishDir)" />
+-		<Exec Command="@(WSL) dos2unix Stardrop.sh" WorkingDirectory="$(PublishDir)" />
+-
+-		<Exec Command="@(WSL) mkdir Stardrop" WorkingDirectory="$(PublishDir)" />
+-
+-		<Move SourceFiles="$(PublishDir)/Internal;$(PublishDir)/Internal.pdb;$(PublishDir)/Stardrop.sh" DestinationFolder="$(PublishDir)/Stardrop" />
+-		<Exec Command="@(WSL) mv Themes Stardrop" WorkingDirectory="$(PublishDir)" />
+-		<Exec Command="@(WSL) mv i18n Stardrop" WorkingDirectory="$(PublishDir)" />
+-
+-		<Exec Command="@(WSL) chmod 755 Stardrop" WorkingDirectory="$(PublishDir)" />
+-		<Exec Command="@(WSL) chmod +x Stardrop.sh" WorkingDirectory="$(PublishDir)/Stardrop" />
+-		<Exec Command="@(WSL) chmod 644 Internal" WorkingDirectory="$(PublishDir)/Stardrop" />
+-		<Exec Command="@(WSL) chmod 644 Internal.pdb" WorkingDirectory="$(PublishDir)/Stardrop" />
+-		<Exec Command="@(WSL) zip -r @(ZipName) Stardrop" WorkingDirectory="$(PublishDir)" />
+-
+-		<Exec Command="rmdir Stardrop /S /Q" WorkingDirectory="$(PublishDir)" />
+-	</Target>
+-
+ 	<ItemGroup Condition="$(Configuration)=='Release' And $(RuntimeIdentifier)=='osx-x64'">
+ 		<WSL Include="wsl" />
+ 		<TempFolderPath Include="Stardrop_Temp" />
+-- 
+2.33.3
+
