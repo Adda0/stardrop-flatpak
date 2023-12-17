@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.github.floogen.stardrop</id>
+  <id>io.github.adda0.stardrop</id>
   
-  <name>Stardrop</name>
-  <summary>A mod manager for Stardew Valley</summary>
+  <name>StardropForked</name>
+  <summary>A mod manager for Stardew Valley forked from Stardrop with custom changes</summary>
   
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
@@ -15,6 +15,9 @@
   
   <description>
     <p>
+      Unofficial Stardrop Flatpak for Adda's fork of Stardrop with custom changes.
+    </p>
+    <p>
         Stardrop is an open-source, cross-platform mod manager for the game Stardew Valley. It is built using the Avalonia UI framework.
     </p>
     <p>
@@ -22,5 +25,5 @@
     </p>
   </description>
   
-  <launchable type="desktop-id">com.github.Floogen.Stardrop.desktop</launchable>
+  <launchable type="desktop-id">io.github.Adda0.Stardrop.desktop</launchable>
 </component>
