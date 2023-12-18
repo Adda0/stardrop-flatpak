@@ -39,7 +39,7 @@ modules:
     build-commands:
       - "install-sdk.sh"
       - "dotnet publish -c Release --source ./nuget-sources Stardrop/Stardrop.csproj --runtime linux-x64 --self-contained true"
-      - "cp -r --remove-destination /run/build/Stardrop/Stardrop/bin/Release/linux-x64/publish/* /app/bin/"
+      - cp -r /run/build/Stardrop/Stardrop/bin/Release/linux-x64/publish/* /app/bin/
     sources:
       - nuget-sources.json
 
@@ -51,19 +51,16 @@ modules:
   - name: Meta
     buildsystem: simple
     build-commands:
-      - "mkdir -p /app/share/icons/hicolor/48x48/apps/"
-      - "cp 48x48.png /app/share/icons/hicolor/48x48/apps/io.github.Adda0.Stardrop.png"
-      - "mkdir -p /app/share/metainfo/"
-      - "cp io.github.Adda0.Stardrop.metainfo.xml /app/share/metainfo/"
-      - "mkdir -p /app/share/applications/"
-      - "cp io.github.Adda0.Stardrop.desktop /app/share/applications/"
+      - install -Dm644 io.github.Adda0.Stardrop.metainfo.xml /app/share/metainfo/io.github.Adda0.Stardrop.metainfo.xml
+      - install -Dm644 io.github.Adda0.Stardrop.desktop /app/share/applications/io.github.Adda0.Stardrop.desktop
+      - install -Dm644 Stardrop_512x512x32.png /app/share/icons/hicolor/512x512/apps/io.github.Adda0.Stardrop.png
     sources:
       - type: file
         path: io.github.Adda0.Stardrop.metainfo.xml
       - type: file
         path: io.github.Adda0.Stardrop.desktop
       - type: file
-        path: 48x48.png
+        path: Stardrop_512x512x32.png
 finish-args:
   # - "--socket=wayland"
   # - "--socket=fallback-x11"
