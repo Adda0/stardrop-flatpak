@@ -3,27 +3,20 @@
   <id>io.github.adda0.stardrop</id>
   
   <name>StardropForked</name>
-  <summary>A mod manager for Stardew Valley forked from Stardrop with custom changes</summary>
+  <summary>Unofficial Stardrop Flatpak for Adda&apos;s fork of Stardrop with custom changes</summary>
   
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0-only</project_license>
-  
-  <supports>
-    <control>pointing</control>
-    <control>keyboard</control>
-  </supports>
+  <project_license>GPL-3.0-or-later</project_license>
   
   <description>
     <p>
-      Unofficial Stardrop Flatpak for Adda's fork of Stardrop with custom changes.
+      Stardrop is an open-source, cross-platform mod manager for the game Stardew Valley. It is built using the Avalonia UI framework.
     </p>
     <p>
-        Stardrop is an open-source, cross-platform mod manager for the game Stardew Valley. It is built using the Avalonia UI framework.
-    </p>
-    <p>
-        Stardrop utilizes SMAPI (Stardew Modding API) to simplify the management and update checking for all applicable Stardew Valley mods. Stardrop is also non-destructive due to how it integrates with SMAPI, meaning it can be uninstalled without any impact on SMAPI, Stardew Valley or the user&apos;s original mod folder. Profiles are also supported, allowing users to have multiple mod groups for specific gameplay or multiplayer sessions. Stardrop also supports the Nexus Mods API, which allows for features such as endorsing mods directly from Stardrop. Other features, such as downloading mod updates via Stardrop are available to premium Nexus Mods users.
+      Stardrop utilizes SMAPI (Stardew Modding API) to simplify the management and update checking for all applicable Stardew Valley mods. Stardrop is also non-destructive due to how it integrates with SMAPI, meaning it can be uninstalled without any impact on SMAPI, Stardew Valley or the user&amp;apos;s original mod folder. Profiles are also supported, allowing users to have multiple mod groups for specific gameplay or multiplayer sessions. Stardrop also supports the Nexus Mods API, which allows for features such as endorsing mods directly from Stardrop. Other features, such as downloading mod updates via Stardrop are available to premium Nexus Mods users.
     </p>
   </description>
   
   <launchable type="desktop-id">io.github.Adda0.Stardrop.desktop</launchable>
+  <content_rating type="oars-1.1" />
 </component>

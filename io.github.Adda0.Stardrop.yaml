@@ -1,4 +1,4 @@
-app-id: it.github.Adda0.Stardrop
+app-id: io.github.Adda0.Stardrop
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
@@ -51,8 +51,12 @@ modules:
   - name: Meta
     buildsystem: simple
     build-commands:
-      - "mkdir -p /app/share/icons/hicolor/48x48/apps"
+      - "mkdir -p /app/share/icons/hicolor/48x48/apps/"
       - "cp 48x48.png /app/share/icons/hicolor/48x48/apps/io.github.Adda0.Stardrop.png"
+      - "mkdir -p /app/share/metainfo/"
+      - "cp io.github.Adda0.Stardrop.metainfo.xml /app/share/metainfo/"
+      - "mkdir -p /app/share/applications/"
+      - "cp io.github.Adda0.Stardrop.desktop /app/share/applications/"
     sources:
       - type: file
         path: io.github.Adda0.Stardrop.metainfo.xml
@@ -61,9 +65,9 @@ modules:
       - type: file
         path: 48x48.png
 finish-args:
-  - "--socket=wayland"
-  - "--socket=fallback-x11"
-  # - "--socket=x11"
+  # - "--socket=wayland"
+  # - "--socket=fallback-x11"
+  - "--socket=x11"
   - "--share=ipc"
   - "--share=network"
   - "--device=dri"
