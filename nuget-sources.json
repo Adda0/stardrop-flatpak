@@ -21,15 +21,6 @@
         "dest-filename": "microsoft.netcore.app.host.linux-x64.7.0.14.nupkg"
     },
 
-
-
-
-
-
-
-
-
-
     {
         "type": "file",
         "url": "https://api.nuget.org/v3-flatcontainer/avalonia/0.10.17/avalonia.0.10.17.nupkg",
