@@ -10,6 +10,13 @@ build-options:
     append-ld-library-path: /usr/lib/sdk/dotnet7/lib
     env:
         PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet7/lib/pkgconfig
+finish-args:
+  - "--socket=x11"
+  - "--share=ipc"
+  - "--share=network"
+  - "--device=dri"
+  - "--filesystem=home"
+  - "--socket=pulseaudio"
 modules:
   # Taken from https://github.com/flathub/com.unity.UnityHub/blob/af171c1ee22994e7ef698004bd44ba7e8bc71cf0/openssl-1.1.yaml.
   - name: openssl-1.1
@@ -62,15 +69,3 @@ modules:
         path: io.github.Adda0.Stardrop.desktop
       - type: file
         path: Stardrop_512x512x32.png
-finish-args:
-  # - "--socket=wayland"
-  # - "--socket=fallback-x11"
-  - "--socket=x11"
-  - "--share=ipc"
-  - "--share=network"
-  - "--device=dri"
-  # - "--filesystem=~/.local/share/Steam/steamapps/common/Stardew\ Valley/"
-  # - "--filesystem=home"
-  - "--filesystem=host"
-  # - "--filesystem=xdg-download"
-  - "--socket=pulseaudio"
