@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.adda0.stardrop</id>
-  
+
   <name>StardropForked</name>
   <summary>Unofficial fork of Stardrop with custom changes</summary>
-  
+
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  
+
   <description>
     <p>
       Stardrop is an open-source, cross-platform mod manager for the game Stardew Valley. It is built using the Avalonia UI framework.
