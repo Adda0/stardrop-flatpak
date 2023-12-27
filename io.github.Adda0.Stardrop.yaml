@@ -53,8 +53,6 @@ modules:
       - type: archive
         url: "https://github.com/Adda0/Stardrop/archive/refs/tags/v1.0.0-beta.38-custom_adda.1.tar.gz"
         sha256: eb1a31fa533ef0d3f4f95d49bb3f7ff1b6692307fb1d0aeb7c21b0b7debcad8d
-      # - type: dir
-      #   path: ../Stardrop-repo/
   - name: Meta
     buildsystem: simple
     build-commands:
